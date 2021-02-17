@@ -1,0 +1,12 @@
+<div class="container d-flex justify-content-center">
+  <div class="card m-3" style="width: 18rem;">
+    <%= simple_form_for [@restaurant, @review] do |f| %>
+        <%= f.input :rating, collection: 0..5 %>
+        <%= f.input :content%>
+        <%= f.submit class: 'btn btn-success mb-3' %>
+      <% end %>
+      <%= link_to restaurants_path do %>
+      <i class="fas fa-undo" style="primary"></i> All restaurants
+      <% end %>
+  </div>
+  </div>

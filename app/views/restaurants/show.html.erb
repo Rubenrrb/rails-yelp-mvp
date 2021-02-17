@@ -1,0 +1,40 @@
+
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://wallpaperaccess.com/full/1843934.jpg);">
+    <div class="container">
+      <h1><strong><%= @restaurant.name %></strong> </h1>
+      <h2><strong><%= @restaurant.address %></strong></h2>
+      <h3><%= @restaurant.phone_number %></strong></h3>
+      <p><%= @restaurant.category %></p>
+    </div>
+  </div>
+    <div class="list-group ">
+      <% @restaurant.reviews.each do |review| %>
+        <li class="list-group-item">
+          <small>
+            <% count = 0 %>
+              <% 5.times do %>
+                <% if review.rating > count %>
+                <i class="fas fa-star text-warning"></i>
+                  <% else %>
+                  <i class="far fa-star text-warning"></i>
+                  <% end %>
+                <% count += 1 %>
+              <% end %>
+            </small>
+          <p><%= review.content %></p>
+        </li>
+      <% end %>
+    </div>
+
+    <div class="container d-flex justify-content-center">
+    <div class="card m-3 p-3" style="width: 18rem;">
+      <%= simple_form_for [@restaurant, @review] do |f| %>
+          <%= f.input :rating, collection: 0..5 %>
+          <%= f.input :content%>
+          <%= f.submit class: 'btn btn-success mb-3 btn-block' %>
+        <% end %>
+        <%= link_to restaurants_path do %>
+        <i class="fas fa-undo" style="primary"></i> All restaurants
+        <% end %>
+    </div>
+    </div> 
